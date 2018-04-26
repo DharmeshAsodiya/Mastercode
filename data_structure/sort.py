@@ -1,9 +1,11 @@
 __author__ = 'dharmesh'
 
+
 def _swap(A, x, y):
         temp = A[x]
         A[x] = A[y]
         A[y] = temp
+
 
 def bubble_sort(li):
     loop = 0
@@ -50,6 +52,7 @@ def rotate_elements(n, A):
         A[j] = temp_li[j]
     return A
 
+
 def sort_by_length():
     li = ['abdjvndjf', 'adsfa', 'sdkfjgdfkk', 'asdff']
     len_dict = {}
@@ -76,14 +79,26 @@ def merge_sort(l):
     right_half = merge_sort(right_half)
 
     #  merging two sorted lists
-    i = j = 0
-    while (i + j) < n :
-        if j == len(right_half) or (i < len(left_half) and left_half[i] < right_half[j]):
-            l[i + j] = left_half[i]
+    i = j = k = 0
+    while i < len(left_half) and j < len(right_half):
+        # if merged element of left is small merge it else right
+        if left_half[i] <= right_half[j]:
+            l[k] = left_half[i]
             i += 1
+            k += 1
         else:
-            l[i + j] = right_half[j]
+            l[k] = right_half[j]
             j += 1
+            k += 1
+    while i < len(left_half):
+        l[k] = left_half[i]
+        i += 1
+        k += 1
+    while j < len(right_half):
+        l[k] = right_half[j]
+        j += 1
+        k += 1
+    print 1
     return l
 
 
@@ -105,6 +120,8 @@ def quick_sort(A, start, end):
     # print A2
     return A
 
-def find_dupilcate():
+
+def find_dupilcate(st):
     for s in st:
         for s in st:
+            pass
