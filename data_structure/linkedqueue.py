@@ -8,21 +8,22 @@ class LinkedQueue:
     size = 0
 
     class _Node:
-        def __init__(self, element, next):
+        def __init__(self, element):
             self.element = element
-            self.next = next
+            self.next = None
 
     def _is_empty(self):
         return self.head is None
 
     def enqueue(self, e):
         if self._is_empty():
-            self.tail = self._Node(e, None)
+	    self.tail = self._Node(e)
             self.head = self.tail
         else:
-            self.tail.next = self._Node(e, None)
-        self.size += 1
-        return "Added"
+            self.tail.next = self._Node(e)
+	    self.tail = self.tail.next
+	self.size += 1
+	return "Added %s" % e
 
     def delqueue(self):
         if self._is_empty():
@@ -33,11 +34,11 @@ class LinkedQueue:
         return rem_element
 
     def elements(self):
-        head = self.head
-        ele_list = [head.element]
-        while head.next is not None:
-            head = head.next
-            ele_list.append(head.element)
+        node = self.head
+	ele_list = []
+        while node is not None:
+            ele_list.append(node.element)
+            node = node.next
         return ele_list
 
     def length(self):
